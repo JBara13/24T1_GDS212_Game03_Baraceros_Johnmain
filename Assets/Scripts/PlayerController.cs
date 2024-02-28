@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     public float jumpForce;
     bool canJump;
+    public AudioSource jump;
+    public AudioSource hit;
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
         {
             //jump
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jump.Play();
         }
     }
 
@@ -50,7 +53,8 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Obstacle")
         {
-            SceneManager.LoadScene("Game");
+           SceneManager.LoadScene("Game");
+           hit.Play();
         }
     }
 }
